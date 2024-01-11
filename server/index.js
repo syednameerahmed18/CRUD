@@ -9,6 +9,12 @@ app.use(express.json())
 
 mongoose.connect("mongodb+srv://syednameerahmed:Nameer@cluster.h0wpr36.mongodb.net/crud")
 
+app.get("/", (req,res) => {
+    UserModel.find()
+    .then(users => res.json(users))
+    .catch(err => res.json(err))
+})
+
 app.post("/createUser", (req,res)=>{
     UserModel.create(req.body)
     .then(users => res.json(users))
